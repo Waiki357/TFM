@@ -1,0 +1,60 @@
+<div class="container col-6">
+  <div class="row mt-5">
+    <div class="card" style="background-color: #482a7e">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:white">Proyectos Creados</h5>
+      </div>
+      <div class="card-body">
+        <div *ngIf="listaProyectosCreados?.length == 0">
+          <p class="card-text" style="color:white">No existen datos.</p>
+        </div>
+        <div class="card mb-2" *ngFor="let proyecto of listaProyectosCreados">
+          <h5 class="card-header">{{proyecto.Titulo}}</h5>
+          <div class="card-body">
+            <p class="card-text" >{{proyecto.Descripcion}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="card" style="background-color: #482a7e">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:white">Proyectos Inscritos</h5>
+      </div>
+      <div class="card-body">
+        <div *ngIf="listaProyectosInscritos?.length == 0">
+          <p class="card-text" style="color:white">No existen datos.</p>
+        </div>
+        <div #elseBlock>
+          <div class="card mb-2" *ngFor="let proyecto of listaProyectosInscritos">
+            <h5 class="card-header">{{proyecto.Titulo}}</h5>
+            <div class="card-body">
+              <p class="card-text">{{proyecto.Descripcion}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card mt-5" style="background-color: #482a7e">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:white">Proyectos Aprobados</h5>
+      </div>
+      <div class="card-body">
+        <div *ngIf="listaProyectosGanados?.length == 0">
+          <p class="card-text" style="color:white">No existen datos.</p>
+        </div>
+        <div #elseBlock>
+          <div class="card mb-2" *ngFor="let proyecto of listaProyectosGanados">
+            <h5 class="card-header">{{proyecto.Titulo}}</h5>
+            <div class="card-body">
+              <p class="card-text">{{proyecto.Descripcion}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

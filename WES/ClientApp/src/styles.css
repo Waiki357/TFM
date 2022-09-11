@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+#header-home {
+  background-color: #482a7e;
+}
+
+#footer-home {
+  background-color: #482a7e;
+}
+
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#header-main {
+  background-color: #482a7e;
+}
+
+#content {
+  flex:1;
+}
+
+#footer-main {
+  height: 60px;
+  background-color: #482a7e;
+}
+
+
+nav a{
+    color: #FFFFFF
+}
+
+header .nav-link {
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+header .dropdown-item {
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+header .dropdown-menu {
+  background-color: #482a7e;
+}
+
+.unete {
+  background-position: bottom center;
+  background-image: url(../src/assets/IMAGEN-2.jpg) !important;
+}
+
+.unete-home {
+  background-position: bottom center;
+  background-image: url(../src/assets/IMAGEN-2.jpg) !important;
+  height: 600px;
+}
+
+.unete-texto {
+  color: #ffffff !important;
+  font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+  font-weight: 800;
+  font-size: 58px;
+  letter-spacing: -3px;
+  line-height: 1.2em;
+}
+
+.colorPrinicpal {
+  background-color: #482a7e !important;
+  color: white !important;
+}
+
+.botones {
+  background-color: #ea5939;
+  border-color: #ea5939;
+  color: white;
+}
+
+.margenes {
+  padding-top: 172px !important;
+  padding-right: 115px !important;
+  padding-bottom: 0px !important;
+  padding-left: 115px !important;
+  margin-top: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 0px !important;
+  width: 100%;
+}
+
+.et_pb_button {
+  border-width: 0px !important;
+  border-radius: 100px;
+  font-size: 15px;
+  font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif !important;
+  background-color: #482a7e;
+  padding-right: 28px !important;
+  padding-left: 28px !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.chatReceived {
+  border-radius: 60px;
+  background-color: #482a7e;
+}
+
+.chatSent {
+  border-radius: 60px;
+  background-color: #ea5939;
+  
+}
+
+.chatMessage {
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow:none !important;
+}

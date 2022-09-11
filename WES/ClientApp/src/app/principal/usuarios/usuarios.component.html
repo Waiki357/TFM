@@ -1,0 +1,117 @@
+<div class="container col-12">
+  <div class="row mt-5">
+    <div class="d-flex align-items-center justify-content-center py-5">
+      <div class="row col-md-6">
+        <div class="card colorPrinicpal">
+          <div class="modal-header">
+            <h2 class="modal-title">Mis datos</h2>
+          </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="hidden" formControlName="Id" />
+                  <div class="mb-3 mt-3">
+                    <label>Email</label>
+                    <input type="text" formControlName="Email" class="form-control" />
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Contraseña</label>
+                    <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Password.errors }" />
+                    <div class="d-flex justify-content-end">
+                      <i class="fa fa-pencil mt-2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="inicializarCambioPassword()"></i>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Nombre</label>
+                    <input type="text" formControlName="Nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Nombre.errors }" />
+                    <div *ngIf="submitted && registerForm.controls.Nombre.errors" class="invalid-feedback">
+                      <div *ngIf="registerForm.controls.Nombre.errors?.required">El nombre es obligatorio</div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Apellidos</label>
+                    <input type="text" formControlName="Apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Apellidos.errors }" />
+                    <div *ngIf="submitted && registerForm.controls.Apellidos.errors" class="invalid-feedback">
+                      <div *ngIf="registerForm.controls.Apellidos.errors?.required">Los apellidos son obligatorios</div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Teléfono</label>
+                    <input type="tel" formControlName="Telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Telefono.errors }" />
+                    <div *ngIf="submitted && registerForm.controls.Telefono.errors" class="invalid-feedback">
+                      <div *ngIf="registerForm.controls.Telefono.errors?.required">El telefono es obligatorio</div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Fecha de nacimiento</label>
+                    <input type="date" formControlName="FechaNacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.FechaNacimiento.errors }" />
+                    <div *ngIf="submitted && registerForm.controls.FechaNacimiento.errors" class="invalid-feedback">La fecha de nacimiento no es válida</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Sexo</label>
+                    <select formControlName="Sexo" class="form-control">
+                      <option *ngFor="let item of listaSexo" value="{{item.Id}}">{{item.Descripcion}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn mr-1 botones me-auto" (click)="darBajaUsuario()"> <span>Dar de baja</span></button>
+              <button type="submit" class="btn mr-1 botones"> <span>Actualizar</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="card colorPrinicpal">
+      <div class="card-body">
+        <div class="modal-content" style="background-color: #482a7e; border: 0;">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Cambio de contraseña</h4>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="passwordForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="mb-3 mt-3">
+                    <label>Nueva contraseña</label>
+                    <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submittedPassword && passwordForm.controls.Password.errors }" />
+                    <div *ngIf="submittedPassword && passwordForm.controls.Password.errors" class="invalid-feedback">
+                      <div *ngIf="passwordForm.controls.Password.errors?.required">La contraseña es obligatoria</div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label>Repetir contraseña</label>
+                    <input type="password" formControlName="PasswordRepetir" class="form-control" [ngClass]="{ 'is-invalid': submittedPassword && passwordForm.controls.PasswordRepetir.errors }" />
+                    <div *ngIf="submittedPassword && passwordForm.controls.PasswordRepetir.errors" class="invalid-feedback">
+                      <div *ngIf="passwordForm.controls.PasswordRepetir.errors?.confirmPasswordValidator">Las contraseñas deben coincidir</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn botones" (click)="actualizarPassword()">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

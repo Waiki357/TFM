@@ -1,0 +1,132 @@
+<div class="container col-12">
+  <div class="row mt-5">
+    <div class="card pb-5 colorPrinicpal">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-12">
+            <h5>Buscador</h5>
+          </div>
+          <div class="col-md-8">
+            <input #searchBox id="search-box" class="form-control" (input)="search(searchBox.value)" style="width:450px" />
+          </div>
+        </div>
+        <button class="btn botones" type="button" (click)="crearProyecto()">Crear proyecto</button>
+      </div>
+      <div class="card-body">
+        <div class="row mt-4">
+          <div style="width:450px">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let proyecto of proyectos$ | async" (click)="onSelectProyecto(proyecto)">{{proyecto.Titulo}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-5 colorPrinicpal" *ngIf="mostrarProyectos">
+      <div class="modal-header">
+        <h5 class="modal-title">Proyecto</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerForm">
+          <div class="row">
+            <div class="col-8">
+              <input type="hidden" formControlName="Id" />
+
+              <div class="mb-3 mt-3">
+                <label>Título</label>
+                <input type="text" formControlName="Titulo" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Titulo.errors }" />
+                <div *ngIf="submitted && registerForm.controls.Titulo.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.Titulo.errors?.required">El Titulo es obligatorio</div>
+                </div>
+              </div>
+
+              <div class="mb-3" [hidden]="tipoFormulario == 2 || tipoFormulario == 3">
+                <label>Creador</label>
+                <input type="text" formControlName="Creador" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Creador.errors }" />
+                <div *ngIf="submitted && registerForm.controls.Creador.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.Creador.errors?.required">Los Creador son obligatorios</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Descripción</label>
+                <textarea type="text" formControlName="Descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Descripcion.errors }"></textarea>
+                <div *ngIf="submitted && registerForm.controls.Descripcion.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.Descripcion.errors?.required">La Descripcion es obligatorio</div>
+                </div>
+              </div>
+
+              <div class="mb-3" [hidden]="tipoFormulario == 2 || tipoFormulario == 3">
+                <label>Fecha creación</label>
+                <input type="date" formControlName="FechaCreacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.FechaCreacion.errors }" />
+                <div *ngIf="submitted && registerForm.controls.FechaCreacion.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.FechaCreacion.errors?.required">La fecha de nacimiento es obligatorio</div>
+                  <div *ngIf="registerForm.controls.FechaCreacion.errors?.pattern">La fecha de nacimiento debe de ser válido</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Fecha finalización</label>
+                <input type="date" formControlName="FechaFinalizacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.FechaFinalizacion.errors }" />
+                <div *ngIf="submitted && registerForm.controls.FechaFinalizacion.errors" class="invalid-feedback">
+                  <div *ngIf="registerForm.controls.FechaFinalizacion.errors?.required">La fecha de nacimiento es obligatorio</div>
+                  <div *ngIf="registerForm.controls.FechaFinalizacion.errors?.pattern">La fecha de nacimiento debe de ser válido</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div *ngIf="tipoFormulario == 1">
+              <button *ngIf="esInscrito" type="button" class="btn botones" (click)="addUsuarioProyecto()" style="margin-right: 10px"><span>Unirse</span></button>
+              <button *ngIf="!esInscrito" type="button" class="btn botones" (click)="deleteUsuarioProyecto(0)" [disabled]="bloquearBotones"><span>Desunirse</span></button>
+            </div>
+            <div *ngIf="tipoFormulario == 2">
+              <button type="button" class="btn botones" (click)="addProyecto()"><span>Crear</span></button>
+            </div>
+            <div *ngIf="tipoFormulario == 3">
+              <button type="button" class="btn botones" (click)="updateProyecto()" style="margin-right: 10px"><span>Actualizar</span></button>
+              <button type="button" class="btn botones" (click)="deleteProyecto()"><span>Eliminar</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card mt-5 pb-4 colorPrinicpal" *ngIf="mostrarUsuariosInscritos">
+      <div class="modal-header">
+        <h5 class="modal-title">Usuarios</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <span *ngIf="listaUsuarios.length == 0">No hay usuarios inscritos</span>
+            <table class="table table-striped px-2" style="background-color:white" *ngIf="listaUsuarios.length != 0">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let usuario of listaUsuarios">
+                  <td>{{usuario.Nombre}}</td>
+                  <td>{{usuario.Apellidos}}</td>
+                  <td>{{usuario.Telefono}}</td>
+                  <td>{{usuario.Email}}</td>
+                  <td>
+                    <button class="btn botones mx-2" type="button" (click)="getChat(usuario.Email)">Chat</button>
+                    <button class="btn botones mx-2" type="button" (click)="deleteUsuarioProyecto(usuario.Id)">Quitar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

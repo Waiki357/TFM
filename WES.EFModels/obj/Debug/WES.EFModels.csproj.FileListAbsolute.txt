@@ -1,0 +1,12 @@
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\WES.EFModels.dll.config
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\WES.EFModels.dll
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\WES.EFModels.pdb
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\EntityFramework.dll
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\EntityFramework.xml
+C:\Users\Jorge\source\repos\WES\WES.EFModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jorge\source\repos\WES\WES.EFModels\obj\Debug\WES.EFModels.csproj.AssemblyReference.cache
+C:\Users\Jorge\source\repos\WES\WES.EFModels\obj\Debug\WES.EFModels.csproj.CoreCompileInputs.cache
+C:\Users\Jorge\source\repos\WES\WES.EFModels\obj\Debug\WES.EFModels.csproj.CopyComplete
+C:\Users\Jorge\source\repos\WES\WES.EFModels\obj\Debug\WES.EFModels.dll
+C:\Users\Jorge\source\repos\WES\WES.EFModels\obj\Debug\WES.EFModels.pdb

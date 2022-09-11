@@ -1,0 +1,99 @@
+<header id="header-home">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+          <img src="../../assets/LOGOTIPO-BLANCO-3.png" alt="WES" id="logo" style="width:84px">
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center pt-5">
+    <div class="row col-md-6">
+      <div class="card colorPrinicpal">
+        <div class="modal-header">
+          <h2 class="modal-title">Registrarse</h2>
+        </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <input type="hidden" formControlName="Id" />
+                <div class="mb-3 mt-3">
+                  <label>Email</label>
+                  <input type="text" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Email.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.Email.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Email.errors?.required">El email es obligatorio</div>
+                    <div *ngIf="registerForm.controls.Email.errors?.pattern">El formato del email es incorrecto</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Contraseña</label>
+                  <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Password.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.Password.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Password.errors?.required">La contraseña es obligatoria</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Repetir contraseña</label>
+                  <input type="password" formControlName="PasswordRepetir" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.PasswordRepetir.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.PasswordRepetir.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.PasswordRepetir.errors?.confirmPasswordValidator">Las contraseñas deben coincidir</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Nombre</label>
+                  <input type="text" formControlName="Nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Nombre.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.Nombre.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Nombre.errors?.required">El nombre es obligatorio</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Apellidos</label>
+                  <input type="text" formControlName="Apellidos" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Apellidos.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.Apellidos.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Apellidos.errors?.required">Los apellidos son obligatorios</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Teléfono</label>
+                  <input type="tel" formControlName="Telefono" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Telefono.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.Telefono.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Telefono.errors?.required">El telefono es obligatorio</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Fecha de nacimiento</label>
+                  <input type="date" formControlName="FechaNacimiento" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.FechaNacimiento.errors }" />
+                  <div *ngIf="submitted && registerForm.controls.FechaNacimiento.errors" class="invalid-feedback">La fecha de nacimiento no es válida</div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Sexo</label>
+                  <select formControlName="Sexo" class="form-select" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.Sexo.errors }">
+                    <option *ngFor="let item of listaSexo" value="{{item.Id}}">{{item.Descripcion}}</option>
+                  </select>
+                  <div *ngIf="submitted && registerForm.controls.Sexo.errors" class="invalid-feedback">
+                    <div *ngIf="registerForm.controls.Sexo.errors?.pattern">Debe seleccionar un valor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn mr-1 botones"> <span>Crear usuario</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+
+<div class="container container mt-5" style="background-color: #eee;">
+  <div class="row">
+    <div class="py-5 col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+      <h5 class="font-weight-bold mb-3 text-center text-lg-start">Usuarios</h5>
+      <div class="card" style="max-height: 500px; overflow-y:auto">
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li *ngFor="let usuario of onlineUser" class="p-2 border-bottom">
+              <div class="d-flex justify-content-between" (click)="chooseUser(usuario.Email)">
+                <div class="d-flex flex-row">
+                  <div class="pt-1">
+                    <p class="fw-bold mb-0">{{usuario.Email}}</p>
+                  </div>
+                </div>                
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--Chat-->
+    <div class="py-5 col-md-6 col-lg-7 col-xl-8">
+      <h5 class="font-weight-bold mb-3 text-center text-lg-start">{{chatUsername}}</h5>
+      <div #scrollMe style="max-height: 500px; overflow-y: auto; min-height: 500px; background-color: white; border: 2px solid #482a7e" [scrollTop]="scrollMe.scrollHeight">
+        <div *ngFor="let msg of chatMessages" class="px-2 pb-2" style="width: 97%;">
+          <div class="row justify-content-md-end">
+            <div class="col-md-6" *ngIf="msg.messagestatus == 'received'">
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-end mb-4">
+                  <div class="card chatReceived">
+                    <div class="card-body">
+                      <p class="mb-0 p-2 chatMessage" style="">
+                        {{msg.message}}
+                      </p>
+                      <div class="d-flex justify-content-end">
+                        <p class="small mb-0 p-2" style="color:white;"><i class="far fa-clock"></i> {{msg.messagedate | date :  "shortTime"}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row justify-content-md-start ">
+            <div class="col-md-6" *ngIf="msg.messagestatus == 'sent'">
+              <ul class="list-unstyled">
+                <li class="d-flex justify-content-start mb-4">
+                  <div class="card chatSent">
+                    <div class="card-body">
+                      <p class="mb-0 p-2 chatMessage" style="">
+                        {{msg.message}}
+                      </p>
+                      <div class="d-flex justify-content-end">
+                        <p class="small mb-0 p-2" style="color:white;"><i class="far fa-clock"></i> {{msg.messagedate | date :  "shortTime"}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+          <input #msgInput class="form-control" placeholder="Escribe el mensaje" (keydown.enter)="sendMessage(msgInput.value);msgInput.value='';" />
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn botones btn-rounded float-end mt-3" style="width: 100px" (click)="sendMessage(msgInput.value);msgInput.value='';">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

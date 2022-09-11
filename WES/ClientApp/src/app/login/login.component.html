@@ -1,0 +1,51 @@
+<header id="header-home">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+          <img src="../../assets/LOGOTIPO-BLANCO-3.png" alt="WES" id="logo" style="width:84px">
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center py-5">
+    <div class="row col-md-4">
+      <div *ngIf="mostrarMensajeVerificacion">
+        <div class="alert alert-success my-3" role="alert">
+          Se ha verificado su cuenta correctamente.
+        </div>
+      </div>
+      <div class="card colorPrinicpal">
+        <div class="modal-header">
+          <h2 class="modal-title">Inicio sesión</h2>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div *ngIf="invalidLogin" class="alert alert-danger">Usuario o contraseña no valida.</div>
+                <div class="mb-3">
+                  <label for="username">Email</label>
+                  <input type="email" id="email" name="email" [(ngModel)]="credentials.email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password">Contraseña</label>
+                  <input type="password" id="password" name="password" [(ngModel)]="credentials.password" class="form-control" required>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a class="me-auto" routerLink="/recuperacion" style="color:white;">¿Has olvidado tu contraseña?</a> 
+                <button class="btn mr-1 botones" type="submit" [disabled]="!loginForm.valid">Iniciar sesión</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

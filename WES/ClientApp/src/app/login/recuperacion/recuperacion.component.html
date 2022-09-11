@@ -1,0 +1,74 @@
+<header id="header-home">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">
+          <img src="../../assets/LOGOTIPO-BLANCO-3.png" alt="WES" id="logo" style="width:84px">
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="d-flex align-items-center justify-content-center pt-5">
+    <div class="row col-md-6">
+      <div *ngIf="!mostrarCambioPassword" class="card colorPrinicpal">
+        <div class="modal-header">
+          <h2 class="modal-title">Recuperación de contraseña</h2>
+        </div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="recuperacionForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3 mt-3">
+                  <label>Por favor, introduce tu dirección de correo electrónico para buscar tu cuenta.</label>
+                  <input type="text" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && recuperacionForm.controls.Email.errors }" />
+                  <div *ngIf="(submitted && recuperacionForm.controls.Email.errors) || emailNoExiste" class="invalid-feedback">
+                    <div *ngIf="recuperacionForm.controls.Email.errors?.required">El email es obligatorio</div>
+                    <div *ngIf="recuperacionForm.controls.Email.errors?.pattern">El formato del email es incorrecto</div>
+                    <div *ngIf="emailNoExiste">El email no existe</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn mr-1 botones"> <span>Recuperar contraseña</span></button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="mostrarCambioPassword" class="card colorPrinicpal">
+        <div class="modal-header">
+          <h2 class="modal-title">Recuperación de contraseña</h2>
+        </div>
+        <form [formGroup]="passwordForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="mb-3 mt-3">
+                  <label>Nueva contraseña</label>
+                  <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submittedPassword && passwordForm.controls.Password.errors }" />
+                  <div *ngIf="submittedPassword && passwordForm.controls.Password.errors" class="invalid-feedback">
+                    <div *ngIf="passwordForm.controls.Password.errors?.required">La contraseña es obligatoria</div>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label>Repetir contraseña</label>
+                  <input type="password" formControlName="PasswordRepetir" class="form-control" [ngClass]="{ 'is-invalid': submittedPassword && passwordForm.controls.PasswordRepetir.errors }" />
+                  <div *ngIf="submittedPassword && passwordForm.controls.PasswordRepetir.errors" class="invalid-feedback">
+                    <div *ngIf="passwordForm.controls.PasswordRepetir.errors?.confirmPasswordValidator">Las contraseñas deben coincidir</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn mr-1 botones" (click)="actualizarPassword()"> <span>Cambiar contraseña</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
